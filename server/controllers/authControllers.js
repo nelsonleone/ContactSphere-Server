@@ -3,7 +3,6 @@ const firebaseAdmin = require('../firebase/firebaseAdmin')
 const verifyIdToken = require('../utils/authAid/verifyIdToken')
 const checkCsrfToken = require('../utils/authAid/checkCsrfToken')
 const csrfTokenGen = require('../utils/authAid/csrfTokenGen')
-const AuthUserData = require('../models/AuthUserData')
 
 
 // Handled User authorization Request
@@ -23,7 +22,7 @@ const authorizeUser = asyncHandler(async (req,res) => {
       secure: process.env.NODE_ENV === "production", 
       domain: process.env.DOMAIN,
       url: '/',
-      sameSite: 'Strict',
+      sameSite: 'lax',
     }
 
     res.cookie('authSessionCookie', sessionCookie, options)
@@ -34,7 +33,7 @@ const authorizeUser = asyncHandler(async (req,res) => {
   
   catch (error) {
     res.status(401)
-    throw new Error('UNAUTHORIZED REQUEST!')
+    throw new Error(err.message,'UNAUTHORIZED REQUEST!')
   }
 })
 

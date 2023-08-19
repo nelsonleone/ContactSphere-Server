@@ -1,6 +1,5 @@
 const express = require('express')
 const app = express()
-const path = require('path')
 require('dotenv').config()
 const mongoose = require('mongoose')
 const cors = require('cors')
@@ -46,20 +45,6 @@ app.use('/server/auth',authRoutes)
 // Contacts Route
 app.use('/server/contacts',contactsHandlerRoutes)
 
-app.use('/',(req,res) => {
-  const options = {
-    root: path.join(__dirname)
-  }
-
-  res.sendFile('index.html', options, function (err) {
-    if (err) {
-      next(err)
-    } 
-    else {
-        console.log('Sent')
-    }
-  })
-})
 
 // Error Handlers
 app.use(noContentFound)

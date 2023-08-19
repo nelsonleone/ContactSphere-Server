@@ -49,7 +49,7 @@ app.use('/',(req,res) => {
       next(err)
     } 
     else {
-        console.log('Sent:', fileName)
+        console.log('Sent')
     }
   })
 })

@@ -19,10 +19,10 @@ const authorizeUser = asyncHandler(async (req,res) => {
     const options = { 
       maxAge: expiresIn, 
       httpOnly: true, 
-      secure: process.env.NODE_ENV === "production", 
+      secure: process.env.NODE_ENV !== "development", 
       domain: process.env.DOMAIN,
       url: '/',
-      sameSite: process.env.NODE_ENV === "production" ? 'none':'lax',
+      sameSite: 'lax',
     }
 
     res.cookie('authSessionCookie', sessionCookie, options)
@@ -44,7 +44,7 @@ const setCsrfToken = asyncHandler(async(req,res) => {
   const token = csrfTokenGen()
 
   const options = { 
-    secure: process.env.NODE_ENV === "production", 
+    secure: process.env.NODE_ENV === "development" ? false : true, 
     domain: process.env.DOMAIN,
     url: '/',
     sameSite: 'lax',

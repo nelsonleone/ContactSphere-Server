@@ -46,7 +46,7 @@ const setCsrfToken = asyncHandler(async (req, res) => {
     secure: process.env.NODE_ENV === 'production',
     domain: process.env.DOMAIN,
     url: '/',
-    sameSite: process.env.NODE_ENV === 'production' ? 'none' : 'lax',
+    sameSite: 'lax',
   }
 
   res.cookie('csrfToken', token, options)

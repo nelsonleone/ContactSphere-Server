@@ -20,7 +20,7 @@ const authorizeUser = asyncHandler(async (req,res) => {
       maxAge: expiresIn, 
       httpOnly: true, 
       secure: process.env.NODE_ENV !== "development", 
-      domain: 'contactsphere.onrender.com',
+      domain: process.env.DOMAIN,
       url: '/',
       sameSite: 'none',
     }

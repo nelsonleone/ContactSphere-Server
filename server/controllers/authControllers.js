@@ -22,7 +22,7 @@ const authorizeUser = asyncHandler(async (req,res) => {
       secure: process.env.NODE_ENV !== "development", 
       domain: process.env.DOMAIN,
       url: '/',
-      sameSite: 'lax',
+      sameSite: 'none',
     }
 
     res.cookie('authSessionCookie', sessionCookie, options)
@@ -46,7 +46,7 @@ const setCsrfToken = asyncHandler(async (req, res) => {
     secure: process.env.NODE_ENV === 'production',
     domain: process.env.DOMAIN,
     url: '/',
-    sameSite: process.env.NODE_ENV === 'production' ? 'none' : 'lax',
+    sameSite: 'none',
   }
 
   res.cookie('csrfToken', token, options)

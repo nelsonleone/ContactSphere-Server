@@ -39,20 +39,20 @@ const authorizeUser = asyncHandler(async (req,res) => {
 
 
 // set csrfToken to user client device
-const setCsrfToken = asyncHandler(async(req,res) => {
-
+const setCsrfToken = asyncHandler(async (req, res) => {
   const token = csrfTokenGen()
 
-  const options = { 
-    secure: process.env.NODE_ENV === "development" ? false : true, 
+  const options = {
+    secure: process.env.NODE_ENV === 'production',
     domain: process.env.DOMAIN,
     url: '/',
-    sameSite:  process.env.NODE_ENV === "development" ? 'lax' : 'none',
+    sameSite: process.env.NODE_ENV === 'production' ? 'none' : 'lax',
   }
 
-  res.cookie('csrfToken',token,options)
+  res.cookie('csrfToken', token, options)
   res.status(204).end()
 })
+
 
 
 
